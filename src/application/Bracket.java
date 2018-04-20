@@ -18,11 +18,11 @@ public class Bracket extends GridPane {
 	}
 	
 	public Bracket(Iterable challengers) {
-		
+		//TODO: implement
 	}
 	
 	public void createMatches(Match nextMatch, ChallengerBlock nextBlock, int row, int col) {
-		
+		//TODO: implement
 	}
 	
 	

@@ -13,17 +13,22 @@ public class Match extends GridPane{
 	
 	//create empty future match
 	public Match() {
-		cb1 = new ChallengerBlock();
-		cb2 = new ChallengerBlock();
+		this(null, null);
+	}
+	
+	public Match(Challenger c1, Challenger c2) {
+		if(c1 == null && c2 == null) {
+			cb1 = new ChallengerBlock();
+			cb2 = new ChallengerBlock();
+		} else {
+			cb1 = new ChallengerBlock(c1);
+			cb2 = new ChallengerBlock(c2); 			
+		}
 		submitButton = new Button("submit");
 		this.add(cb1, 0, 0);
 		this.add(cb2, 0, 1);
 		this.add(submitButton, 1, 0, 1, 2);
-		GridPane.setValignment(submitButton, VPos.CENTER);
-	}
-	
-	public Match(ChallengerBlock cb1, ChallengerBlock cb2) {
-		// TODO: implement
+		GridPane.setValignment(submitButton, VPos.CENTER);		
 	}
 	
 	public Challenger getWinner() {
