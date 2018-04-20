@@ -17,14 +17,15 @@ public class Match extends GridPane{
 	}
 	
 	public Match(Challenger c1, Challenger c2) {
+		submitButton = new Button("submit");
 		if(c1 == null && c2 == null) {
 			cb1 = new ChallengerBlock();
 			cb2 = new ChallengerBlock();
+			submitButton.setDisable(true);
 		} else {
 			cb1 = new ChallengerBlock(c1);
 			cb2 = new ChallengerBlock(c2); 			
 		}
-		submitButton = new Button("submit");
 		this.add(cb1, 0, 0);
 		this.add(cb2, 0, 1);
 		this.add(submitButton, 1, 0, 1, 2);
@@ -46,5 +47,9 @@ public class Match extends GridPane{
 	
 	public void setNextBlock(ChallengerBlock nextBlock) {
 		this.nextBlock = nextBlock;
+	}
+	
+	public boolean hasTwoChallengers() {
+		return cb1.getChallenger() != null && cb1.getChallenger() != null;
 	}
 }

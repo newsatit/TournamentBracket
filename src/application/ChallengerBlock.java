@@ -29,6 +29,9 @@ public class ChallengerBlock extends HBox{
 	
 	public void setChallenger(Challenger challenger) {
 		this.challenger = challenger;
+		this.challengerName.setText(this.challenger.getName());
+		this.scoreInput.setEditable(true);
+		
 	}
 	
 	public Challenger getChallenger() {
@@ -37,8 +40,13 @@ public class ChallengerBlock extends HBox{
 	
 	// return -1 if scoreInput is not an integer
 	public Integer getScore() {
-		//TODO: implement
-		return null;
+		Integer score;
+		try {
+			score = Integer.parseInt(scoreInput.getText());
+		} catch(NumberFormatException e) {
+			score = -1;
+		}
+		return score;
 	}
 
 }

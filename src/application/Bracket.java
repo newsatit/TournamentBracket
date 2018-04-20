@@ -17,8 +17,15 @@ public class Bracket extends GridPane {
 		this.add(new Match(), 0, 2);
 	}
 	
-	public Bracket(Iterable challengers) {
+	public Bracket(ArrayList<Challenger> challengers) {
 		//TODO: implement
+		if(challengers.size() == 0) {
+			
+		} else if(challengers.size() == 1) {
+			
+		} else {
+			
+		}
 	}
 	
 	public void createMatches(Match nextMatch, ChallengerBlock nextBlock, int row, int col) {
