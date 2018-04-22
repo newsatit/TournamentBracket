@@ -1,16 +1,16 @@
-Boston Celtics
-Los Angeles Lakers
-Chicago Bulls
-Golden State Warriors
-San Antonio Spurs
-Philadelphia 76ers
-Detroit Pistons
-Miami Heat
-New York Knicks
-Houston Rockets
-Atlanta Hawks
-Washington Wizards
-Oklahoma City Thunder
-Cleveland Cavaliers
-Portland Trail Blazers
-Milwaukee Bucks
+01Boston Celtics
+02Los Angeles Lakers
+03Chicago Bulls
+04Golden State Warriors
+05San Antonio Spurs
+06Philadelphia 76ers
+07Detroit Pistons
+08Miami Heat
+09New York Knicks
+10Houston Rockets
+11Atlanta Hawks
+12Washington Wizards
+13Oklahoma City Thunder
+14Cleveland Cavaliers
+15Portland Trail Blazers
+16Milwaukee Bucks
