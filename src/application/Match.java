@@ -10,6 +10,8 @@ public class Match extends GridPane{
 	private Button submitButton;
 	private Match nextMatch;
 	private ChallengerBlock nextBlock;
+    private Match leftPreviousMatch;
+    private Match rightPreviousMatch;
 	
 	//create empty future match
 	public Match() {
@@ -17,6 +19,7 @@ public class Match extends GridPane{
 	}
 	
 	public Match(Challenger c1, Challenger c2) {
+
 		submitButton = new Button("submit");
 		if(c1 == null && c2 == null) {
 			cb1 = new ChallengerBlock();
@@ -45,11 +48,31 @@ public class Match extends GridPane{
 		this.nextMatch = nextMatch;
 	}
 	
+	public void setLeftPreviousMatch(Match leftPreviousMatch) {
+        this.leftPreviousMatch = leftPreviousMatch;
+    }
+	
+	public void setRightPreviousMatch(Match rightPreviousMatch) {
+        this.rightPreviousMatch = rightPreviousMatch;
+    }
+	
 	public void setNextBlock(ChallengerBlock nextBlock) {
 		this.nextBlock = nextBlock;
 	}
 	
 	public boolean hasTwoChallengers() {
 		return cb1.getChallenger() != null && cb1.getChallenger() != null;
+	}
+	
+	public ChallengerBlock getNextBlock(int i) {
+	    if(i == 1) {
+	        return cb1;
+	    }else if(i == 2) {
+	        return cb2;
+	    }else {
+	        System.out.println("There are only 2 ChallengerBlock: 1, 2");
+	        return null;
+	    }
+	        
 	}
 }
