@@ -23,7 +23,10 @@ public class ChallengerBlock extends HBox{
 			this.scoreInput.setEditable(false);
 		} else {
 			this.challengerName = new Label(this.challenger.getName());
+			challengerName.setMaxWidth(150);
+			challengerName.setMinWidth(150);
 		}	
+		scoreInput.setMaxWidth(100);
 		this.getChildren().addAll(this.challengerName, this.scoreInput);
 	}
 	
@@ -31,7 +34,8 @@ public class ChallengerBlock extends HBox{
 		this.challenger = challenger;
 		this.challengerName.setText(this.challenger.getName());
 		this.scoreInput.setEditable(true);
-		
+		challengerName.setMaxWidth(150);
+		challengerName.setMinWidth(150);	
 	}
 	
 	public Challenger getChallenger() {

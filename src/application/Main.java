@@ -5,29 +5,27 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.application.Application;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		    Pane root = new Pane();
+			ScrollPane root = new ScrollPane();
+		    BorderPane content = new BorderPane();
 
 		    LeaderBoard lb = new LeaderBoard(3);
-		    lb.setLayoutX(700);
-		    lb.setLayoutY(50);
-		    root.getChildren().add(lb);
-
+		    content.setTop(lb);
+		    
 		    ArrayList<Challenger> nameList = readFile("teams16.txt");
-		    nameList = sortTeam(nameList);
 			Bracket bracket = new Bracket(nameList);
-		    bracket.setLayoutX(100);
-		    bracket.setLayoutY(50);
-		    root.getChildren().add(bracket);
+		    content.setCenter(bracket);
 
-			Scene scene = new Scene(root,1000,1000);
+		    root.setContent(content);
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Tournament Bracket");

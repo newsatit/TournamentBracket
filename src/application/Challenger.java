@@ -16,4 +16,5 @@ public class Challenger {
 	public Integer getSeed() {
 		return seed;
 	}
+	
 }

@@ -27,7 +27,7 @@ public class Match extends GridPane{
 	 * to a larger GridPane in the Bracket class
 	 */
 	public Match(Challenger c1, Challenger c2) {
-
+		nextMatch = null;
 		submitButton = new Button("submit");
 		if(c1 == null && c2 == null) {
 			cb1 = new ChallengerBlock();
