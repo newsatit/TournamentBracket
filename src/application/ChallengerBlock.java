@@ -38,7 +38,7 @@ public class ChallengerBlock extends HBox{
 		return challenger;
 	}
 	
-	// return -1 if scoreInput is not an integer
+	// return -1 if scoreInput is not an integer or if a score has not been inputted
 	public Integer getScore() {
 		Integer score;
 		try {
