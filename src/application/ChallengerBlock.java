@@ -5,15 +5,31 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+/**
+ * Stores and outputs the name of the Challenger and the score. Helps keep track of the challenger's
+ * score for a specific match
+ * @author
+ *
+ */
 public class ChallengerBlock extends HBox{
 	private Challenger challenger;
 	private TextField scoreInput;
 	private Label challengerName;
 	
+	
+	/**
+	 * default constructor that sets the Challenger to null
+	 */
 	public ChallengerBlock() {
 		this(null);
 	}
 	
+	
+	/**
+	 * Sets up the prompt text and the name of the Challenger. If no challenger is present, then the
+	 * ChallengerBlock will output text "TBD"
+	 * @param challenger that will be outputted in this block
+	 */
 	public ChallengerBlock(Challenger challenger) {
 		this.challenger = challenger;
 		this.scoreInput = new TextField();
@@ -27,6 +43,10 @@ public class ChallengerBlock extends HBox{
 		this.getChildren().addAll(this.challengerName, this.scoreInput);
 	}
 	
+	/**
+	 * 
+	 * @param challenger
+	 */
 	public void setChallenger(Challenger challenger) {
 		this.challenger = challenger;
 		this.challengerName.setText(this.challenger.getName());
@@ -34,11 +54,17 @@ public class ChallengerBlock extends HBox{
 		
 	}
 	
+	/**
+	 * 
+	 * @return the challenger reference that is stored in this ChallengerBlock
+	 */
 	public Challenger getChallenger() {
 		return challenger;
 	}
 	
-	// return -1 if scoreInput is not an integer or if a score has not been inputted
+	/**
+	 * @return Integer. -1 if scoreInput is not an integer or if getText() is called on an empty String
+	 */
 	public Integer getScore() {
 		Integer score;
 		try {
