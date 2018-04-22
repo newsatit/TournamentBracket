@@ -42,7 +42,7 @@ public class ChallengerBlock extends HBox{
 	public Integer getScore() {
 		Integer score;
 		try {
-			score = Integer.parseInt(scoreInput.getText());
+			score = Integer.parseInt(scoreInput.getText().trim());
 		} catch(NumberFormatException e) {
 			score = -1;
 		}

@@ -35,10 +35,35 @@ public class Match extends GridPane{
 		GridPane.setValignment(submitButton, VPos.CENTER);		
 	}
 	
+	
+	
+	/*
+	 *  Returns the Challenger with the higher score in the current match. If the two challengers
+	 *  have the same score, the Challenger with the higher seed (rank) will be chosen as the winner.
+	 */ 
 	public Challenger getWinner() {
-		// TODO: implement
-		return null;
+	    
+	    // If the scores for the two teams are not available, or the score was not inputted correctly,
+	    // then return null
+	    if (hasTwoChallengers()) { 
+	        if (cb1.getScore() == -1 || cb2.getScore() == -1)
+	            return null;
+	        
+	        if (cb1.getScore()==cb2.getScore()) { 
+	            if ( cb1.getChallenger().getSeed() < cb2.getChallenger().getSeed() )
+	                return cb1.getChallenger();
+	            else
+	                return cb2.getChallenger();
+	        }
+	        if (cb1.getScore() > cb2.getScore())
+	            return cb1.getChallenger();
+	        else
+	            return cb2.getChallenger();
+	    }
+		return null;  // return null if two challengers have not been initialized yet
 	}
+	
+	
 	
 	public void handleSubmit() {
 		//TODO: implement
