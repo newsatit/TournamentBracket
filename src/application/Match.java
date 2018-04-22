@@ -4,6 +4,10 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
+/*
+ * Consists of two challengerblocks, and a reference to the next Challengerblock the winner of this
+ * current match will move to
+ */
 public class Match extends GridPane{
 	private ChallengerBlock cb1;
 	private ChallengerBlock cb2;
@@ -18,6 +22,10 @@ public class Match extends GridPane{
 		this(null, null);
 	}
 	
+	/*
+	 * Sets up the ChallengerBlocks and submit button in a small GridPane that will be later added
+	 * to a larger GridPane in the Bracket class
+	 */
 	public Match(Challenger c1, Challenger c2) {
 
 		submitButton = new Button("submit");
@@ -64,31 +72,59 @@ public class Match extends GridPane{
 	}
 	
 	
-	
+	/*
+	 * 
+	 */
 	public void handleSubmit() {
 		//TODO: implement
 	}
 	
+	
+	/*
+	 * saves the reference to the next Match
+	 */
 	public void setNextMatch(Match nextMatch) {
 		this.nextMatch = nextMatch;
 	}
 	
+	
+	/*
+	 * saves reference to the previous Match on the left
+	 */
 	public void setLeftPreviousMatch(Match leftPreviousMatch) {
         this.leftPreviousMatch = leftPreviousMatch;
     }
 	
+	
+	/*
+	 * saves reference to the previous Match on the right
+	 */
 	public void setRightPreviousMatch(Match rightPreviousMatch) {
         this.rightPreviousMatch = rightPreviousMatch;
     }
 	
+	
+	/*
+	 * saves reference for the ChallengerBlock that the winner will move to in the next round
+	 */
 	public void setNextBlock(ChallengerBlock nextBlock) {
 		this.nextBlock = nextBlock;
 	}
 	
+	
+	/*
+	 * returns true if two challengers are initialized in their respective ChallengerBlocks.
+	 * False otherwise
+	 */
 	public boolean hasTwoChallengers() {
 		return cb1.getChallenger() != null && cb1.getChallenger() != null;
 	}
 	
+	
+	
+	/*
+	 * 
+	 */
 	public ChallengerBlock getNextBlock(int i) {
 	    if(i == 1) {
 	        return cb1;
