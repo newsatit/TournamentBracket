@@ -20,7 +20,7 @@ public class Main extends Application {
 		    LeaderBoard lb = new LeaderBoard(3);
 		    content.setTop(lb);
 		    
-		    ArrayList<Challenger> nameList = readFile("input/teams8.txt");
+		    ArrayList<Challenger> nameList = readFile("input/teams2.txt");
 			Bracket bracket = new Bracket(nameList);
 		    content.setCenter(bracket);
 
@@ -48,9 +48,11 @@ public class Main extends Application {
             int i = 1;
             while (sc.hasNextLine()) {
                 String duh = sc.nextLine().trim();
-                //System.out.println(duh);
-                nameList.add(new Challenger(duh, i));
-                i++;
+                if(!duh.equals("")) {
+                	nameList.add(new Challenger(duh, i));
+                	i++;               	
+                }
+
             }
             sc.close();
         } catch (FileNotFoundException e) {

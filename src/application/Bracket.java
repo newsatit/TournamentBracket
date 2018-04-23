@@ -27,7 +27,6 @@ public class Bracket extends GridPane {
 		    finalMatch = createMatches(null, null, currentRow, currentCol, currentRow, challengers);
 		}
 	}
-	
 	/*recursive method that create all the matches and store the reference to all matches in the first round into 
 	 * the arrayList matches
 	 * Known issues: don't have a reference to the semifinal matches
@@ -51,7 +50,7 @@ public class Bracket extends GridPane {
 	        ArrayList<Challenger> bottom = new ArrayList<Challenger>();
 	        top.add(challengers.get(0));
 	        boolean addTop = false;
-	        for(int i = 1; i< challengers.size() - 2 ; i+=2) {
+	        for(int i = 1; i< challengers.size() - 2; i+=2) {
 	        	if(addTop) {
 	        		top.add(challengers.get(i));
 	        		top.add(challengers.get(i+1));
@@ -62,6 +61,8 @@ public class Bracket extends GridPane {
 	        	addTop = !addTop;
 	        }
 	        top.add(challengers.get(challengers.size()-1));
+	        System.out.println(top.toString());
+	        System.out.println(bottom.toString());
 	        //create left previous match
 	        current.setLeftPreviousMatch(createMatches(current,current.getCurrentBlock(1),Math.ceil(space/2), col - 1, (row - Math.ceil(space/2)), top));
 	        //create right previous match
