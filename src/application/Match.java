@@ -4,9 +4,10 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-/*
- * Consists of two challengerblocks, and a reference to the next Challengerblock the winner of this
+/**
+ * Consists of two ChallengerBlocks, and a reference to the next ChallengerBlock the winner of this
  * current match will move to
+ * @author
  */
 public class Match extends GridPane{
 	private ChallengerBlock cb1;
@@ -22,9 +23,11 @@ public class Match extends GridPane{
 		this(null, null);
 	}
 	
-	/*
+	/**
 	 * Sets up the ChallengerBlocks and submit button in a small GridPane that will be later added
 	 * to a larger GridPane in the Bracket class
+	 * @param c1
+	 * @param c2
 	 */
 	public Match(Challenger c1, Challenger c2) {
 		nextMatch = null;
@@ -43,7 +46,7 @@ public class Match extends GridPane{
 		GridPane.setValignment(submitButton, VPos.CENTER);		
 	}
 	/**
-	 *  Returns the Challenger with the higher score in the current match. If the two challengers
+	 *  @return Returns the Challenger with the higher score in the current match. If the two challengers
 	 *  have the same score, the Challenger with the higher seed (rank) will be chosen as the winner.
 	 */ 
 	public Challenger getWinner() {
@@ -77,7 +80,8 @@ public class Match extends GridPane{
 	
 	
 	/**
-	 * saves the reference to the next Match
+	 * 
+	 * @param nextMatch
 	 */
 	public void setNextMatch(Match nextMatch) {
 		this.nextMatch = nextMatch;
@@ -85,7 +89,8 @@ public class Match extends GridPane{
 	
 	
 	/**
-	 * saves reference to the previous Match on the left
+	 * 
+	 * @param leftPreviousMatch
 	 */
 	public void setLeftPreviousMatch(Match leftPreviousMatch) {
         this.leftPreviousMatch = leftPreviousMatch;
@@ -93,7 +98,7 @@ public class Match extends GridPane{
 	
 	
 	/**
-	 * saves reference to the previous Match on the right
+	 * @param rightPreviousMatch
 	 */
 	public void setRightPreviousMatch(Match rightPreviousMatch) {
         this.rightPreviousMatch = rightPreviousMatch;
@@ -101,7 +106,8 @@ public class Match extends GridPane{
 	
 	
 	/**
-	 * saves reference for the ChallengerBlock that the winner will move to in the next round
+	 * Sets the object of the nextBlock using the ChallengerBlock parameter
+	 * @param nextBlock the ChallengerBlock that the winner will move to in the next round
 	 */
 	public void setNextBlock(ChallengerBlock nextBlock) {
 		this.nextBlock = nextBlock;
@@ -121,16 +127,17 @@ public class Match extends GridPane{
 
     /**
      * 
+     * @return the ChallengerBlock object reference stored in nextBlock
      */
 	public ChallengerBlock getNextBlock() {
-	    // need implementation
-	    return null;
+	    return nextBlock;
 	}
 	
 	/**
 	 * 
-	 * @param i
-	 * @return
+	 * @param i, which will be used to pick a ChallengerBlock
+	 * @return one of the two ChallengerBlock objects stored in this current Match. Returns null if
+	 * the index exceeds 2
 	 */
 	public ChallengerBlock getCurrentBlock(int i) {
 	    if(i == 1) {

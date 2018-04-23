@@ -64,7 +64,7 @@ public class Bracket extends GridPane {
 	        //create left previous match
 	        current.setLeftPreviousMatch(createMatches(current,current.getCurrentBlock(1),Math.ceil(space/2), col - 1, (row - Math.ceil(space/2)), top));
 	        //create right previous match
-	        current.setRightPreviousMatch(createMatches(current,current.getCurrentBlock(1),Math.ceil(space/2), col - 1, (row + Math.ceil(space/2)), bottom));
+	        current.setRightPreviousMatch(createMatches(current,current.getCurrentBlock(2),Math.ceil(space/2), col - 1, (row + Math.ceil(space/2)), bottom));
 	        return current;
 	    }
 	}
