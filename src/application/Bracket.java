@@ -32,7 +32,6 @@ public class Bracket extends GridPane {
 	 * Known issues: don't have a reference to the semifinal matches
 	 */
 	public Match createMatches(Match nextMatch, ChallengerBlock nextBlock,double space, double col, double row, ArrayList<Challenger> challengers) {
-	    //System.out.println("Space : " + space + " Col: " + col + " Row : " + row);
 	    if(col == 0){
             Match current = new Match(challengers.get(0),challengers.get(1));
             current.setNextBlock(nextBlock);
@@ -61,8 +60,6 @@ public class Bracket extends GridPane {
 	        	addTop = !addTop;
 	        }
 	        top.add(challengers.get(challengers.size()-1));
-	        System.out.println(top.toString());
-	        System.out.println(bottom.toString());
 	        //create left previous match
 	        current.setLeftPreviousMatch(createMatches(current,current.getCurrentBlock(1),Math.ceil(space/2), col - 1, (row - Math.ceil(space/2)), top));
 	        //create right previous match
