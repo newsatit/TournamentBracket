@@ -35,21 +35,19 @@ public class Main extends Application {
 		}
 	}
 	
-    public static void main(String[] args) {
+    	public static void main(String[] args) {
 		
 		launch(args);
 	}
-	
+
+
 	private ArrayList<Challenger> readFile(String file){
 	    ArrayList<Challenger> nameList = new ArrayList<Challenger>();
         try {
             Scanner sc = new Scanner(new File(file));
-            //System.out.println(file);
             int i = 1;
             while (sc.hasNextLine()) {
-                String duh = sc.nextLine().trim();
-                //System.out.println(duh);
-                nameList.add(new Challenger(duh, i));
+                nameList.add(new Challenger(sc.nextLine().trim(), i));
                 i++;
             }
             sc.close();
@@ -60,26 +58,21 @@ public class Main extends Application {
 	}
 	
     private ArrayList<Challenger> sortTeam(ArrayList<Challenger> nameList) {
-        @SuppressWarnings("unchecked")
-        ArrayList<Challenger> sortedList = (ArrayList<Challenger>) nameList.clone();
-        int current = 0;
-        int i = 0;
-        int j = nameList.size() - 1;
-        int k = nameList.size() / 2;
-//        while(current < nameList.size()) {   
-//            //System.out.println("current: " + current + " i: " + i + " j: " + j);
-//            //System.out.println(nameList.get(current).getName());
-//            //System.out.println(sortedList.get(current).getName());       
-//            sortedList.set(i, nameList.get(current));
-//            i++;
-//            current++;
-//            //System.out.println(nameList.get(current).getName());
-//            //System.out.println(sortedList.get(current).getName());       
-//            sortedList.set(j, nameList.get(current));
-//            j--;
-//            current++;
-//        }
-        
+        ArrayList<Challenger> sortedList = new ArrayList<Challenger>();
+        sortedList.add(nameList.get(0));
+        sortedList.add(nameList.get(1));
+        int i = 2;
+        int rounds = (int)((Math.log(nameList.size())/Math.log(2)));
+        while(i <= rounds) {
+            int j = sortedList.size();
+            int sum = (int) (Math.pow(2,i) - 1);
+            while(j > 0) {
+                System.out.println("Round: " + i +" Sum: " + sum +  " j: " + j);
+                sortedList.add(j, nameList.get(sum - (sortedList.get(j - 1).getSeed() - 1)));
+                j--;
+            }
+            i++;
+        }
         return sortedList;
     }
 }
