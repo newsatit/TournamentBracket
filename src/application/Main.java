@@ -20,7 +20,7 @@ public class Main extends Application {
 		    LeaderBoard lb = new LeaderBoard(3);
 		    content.setTop(lb);
 		    
-		    ArrayList<Challenger> nameList = readFile("teams16.txt");
+		    ArrayList<Challenger> nameList = readFile("input/teams8.txt");
 			Bracket bracket = new Bracket(nameList);
 		    content.setCenter(bracket);
 

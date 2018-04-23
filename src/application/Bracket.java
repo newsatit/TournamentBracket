@@ -22,6 +22,7 @@ public class Bracket extends GridPane {
 		} else {//2^n challengers 
 		    double currentRow = (challengers.size()/2) - 1;
 		    double currentCol = (int)((Math.log(currentRow)/Math.log(2)) + 1);
+		    System.out.println(currentRow + " " + currentCol);
 		    matches = new ArrayList<Match>();
 		    finalMatch = createMatches(null, null, currentRow, currentCol, currentRow, challengers);
 		}
