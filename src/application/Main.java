@@ -11,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 
 public class Main extends Application {
+	
+	private static ArrayList<Challenger> nameList;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -20,7 +23,7 @@ public class Main extends Application {
 		    LeaderBoard lb = new LeaderBoard(3);
 		    content.setTop(lb);
 		    
-		    ArrayList<Challenger> nameList = readFile("input/teams16.txt");
+		    
 			Bracket bracket = new Bracket(nameList);
 		    content.setCenter(bracket);
 
@@ -35,13 +38,13 @@ public class Main extends Application {
 		}
 	}
 	
-    	public static void main(String[] args) {
-		
+    public static void main(String[] args) {
+    	nameList = readFile("input/teams16.txt");
 		launch(args);
 	}
 
 
-	private ArrayList<Challenger> readFile(String file){
+	private static ArrayList<Challenger> readFile(String file){
 	    ArrayList<Challenger> nameList = new ArrayList<Challenger>();
         try {
             Scanner sc = new Scanner(new File(file));
