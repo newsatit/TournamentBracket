@@ -78,5 +78,4 @@ public class ChallengerBlock extends HBox{
 		}
 		return score;
 	}
-
 }

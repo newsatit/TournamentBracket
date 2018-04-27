@@ -17,6 +17,7 @@ public class Match extends GridPane{
 	private ChallengerBlock nextBlock;
     private Match leftPreviousMatch;
     private Match rightPreviousMatch;
+    private boolean done;
 	
 	//create empty future match
 	public Match() {
@@ -31,7 +32,11 @@ public class Match extends GridPane{
 	 */
 	public Match(Challenger c1, Challenger c2) {
 		nextMatch = null;
+		done = false;
 		submitButton = new Button("submit");
+		submitButton.setOnAction((event) -> {
+		    handleSubmit();
+		});
 		if(c1 == null && c2 == null) {
 			cb1 = new ChallengerBlock();
 			cb2 = new ChallengerBlock();
@@ -49,26 +54,48 @@ public class Match extends GridPane{
 	 *  @return Returns the Challenger with the higher score in the current match. If the two challengers
 	 *  have the same score, the Challenger with the higher seed (rank) will be chosen as the winner.
 	 */ 
-	public Challenger getWinner() {
+	public ChallengerBlock getWinner() {
 	           
        // If the scores for the two teams are not available, or the score was not inputted correctly,
        // then return null
        if (hasTwoChallengers()) { 
-           if (cb1.getScore() == -1 || cb2.getScore() == -1)
-              return null;
-           
+           if (cb1.getScore() == -1 || cb2.getScore() == -1) {
+               return null;
+           }
            if (cb1.getScore()==cb2.getScore()) { 
               if ( cb1.getChallenger().getSeed() < cb2.getChallenger().getSeed() )
-                   return cb1.getChallenger();
+                   return cb1;
                else
-                   return cb2.getChallenger();
+                   return cb2;
            }
            if (cb1.getScore() > cb2.getScore())
-               return cb1.getChallenger();
+               return cb1;
            else
-               return cb2.getChallenger();
+               return cb2;
        }
        return null;  // return null if two challengers have not been initialized yet
+	}
+	
+	public ChallengerBlock getLoser() {
+        
+	       // If the scores for the two teams are not available, or the score was not inputted correctly,
+	       // then return null
+	       if (hasTwoChallengers()) { 
+	           if (cb1.getScore() == -1 || cb2.getScore() == -1) {
+	               return null;
+	           }
+	           if (cb1.getScore()==cb2.getScore()) { 
+	              if ( cb1.getChallenger().getSeed() < cb2.getChallenger().getSeed() )
+	                   return cb2;
+	               else
+	                   return cb1;
+	           }
+	           if (cb1.getScore() > cb2.getScore())
+	               return cb2;
+	           else
+	               return cb1;
+	       }
+	       return null;  // return null if two challengers have not been initialized yet
 	}
 		
 	/**
@@ -76,6 +103,16 @@ public class Match extends GridPane{
 	 */
 	public void handleSubmit() {
 		//TODO: implement
+	    if(getWinner() != null) {
+	        cb1.setDisable(true);
+            cb2.setDisable(true);
+            submitButton.setDisable(true);
+            done = true;
+            if(nextMatch != null) {
+                this.nextBlock.setChallenger(getWinner().getChallenger());
+                this.nextMatch.submitButton.setDisable(false);
+            }
+	    }
 	}
 	
 	
@@ -104,6 +141,17 @@ public class Match extends GridPane{
         this.rightPreviousMatch = rightPreviousMatch;
     }
 	
+	public Match getLeftPreviousMatch() {
+        return leftPreviousMatch;
+    }
+    
+    
+    /**
+     * @param rightPreviousMatch
+     */
+    public Match getRightPreviousMatch() {
+        return rightPreviousMatch;
+    }
 	
 	/**
 	 * Sets the object of the nextBlock using the ChallengerBlock parameter
@@ -149,5 +197,9 @@ public class Match extends GridPane{
 	        return null;
 	    }
 	        
+	}
+	
+	public boolean getStatus() {
+	    return done;
 	}
 }
