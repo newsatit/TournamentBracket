@@ -8,8 +8,6 @@ import javafx.scene.layout.GridPane;
 public class Bracket extends GridPane {
 	private ArrayList<Match> matches;
 	private Match finalMatch;
-	private Match semiMatch1;
-	private Match semiMatch2;
 	private ArrayList<Challenger> challengers;
 	private int index = 0;
 	
@@ -27,9 +25,9 @@ public class Bracket extends GridPane {
 		}
 	}
 	
-	/*recursive method that create all the matches and store the reference to all matches in the first round into 
+	/**
+	 * recursive method that create all the matches and store the reference to all matches in the first round into 
      * the arrayList matches
-     * Known issues: don't have a reference to the semifinal matches
      */
 	public Match createMatches(Match nextMatch, ChallengerBlock nextBlock,double space, double col, double row, ArrayList<Challenger> challengers) {
 	    if(col == 0){
@@ -68,6 +66,10 @@ public class Bracket extends GridPane {
 	    }
 	}
 	
+	/**
+	 * Method that return an ArrayList that contains the winners in the bracket
+	 * [0] = first place [1]=second place [2] = third place
+	 */
 	public ArrayList<ChallengerBlock> getChamp() {
 	    if(finalMatch.getStatus()) {
 	        ArrayList<ChallengerBlock> champs = new ArrayList<ChallengerBlock>();

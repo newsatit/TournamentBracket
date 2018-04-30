@@ -51,7 +51,7 @@ public class Match extends GridPane{
 		GridPane.setValignment(submitButton, VPos.CENTER);		
 	}
 	/**
-	 *  @return Returns the Challenger with the higher score in the current match. If the two challengers
+	 *  @return Returns the ChallengerBlock with the higher score in the current match. If the two challengers
 	 *  have the same score, the Challenger with the higher seed (rank) will be chosen as the winner.
 	 */ 
 	public ChallengerBlock getWinner() {
@@ -76,6 +76,10 @@ public class Match extends GridPane{
        return null;  // return null if two challengers have not been initialized yet
 	}
 	
+	 /**
+     *  @return Returns the ChallengerBlock with the lower score in the current match. If the two challengers
+     *  have the same score, the Challenger with the lower seed (rank) will be chosen as the loser.
+     */ 
 	public ChallengerBlock getLoser() {
         
 	       // If the scores for the two teams are not available, or the score was not inputted correctly,
@@ -99,7 +103,9 @@ public class Match extends GridPane{
 	}
 		
 	/**
-	 * 
+	 * pass the challenger to the next match if there is one and enable the text field and submit button
+	 * disable the text field and submit button of the current match
+	 * change done to true
 	 */
 	public void handleSubmit() {
 		//TODO: implement
@@ -117,7 +123,7 @@ public class Match extends GridPane{
 	
 	
 	/**
-	 * 
+	 * set the reference to the next match
 	 * @param nextMatch
 	 */
 	public void setNextMatch(Match nextMatch) {
@@ -126,7 +132,7 @@ public class Match extends GridPane{
 	
 	
 	/**
-	 * 
+	 * set reference to the left previous match
 	 * @param leftPreviousMatch
 	 */
 	public void setLeftPreviousMatch(Match leftPreviousMatch) {
@@ -135,19 +141,25 @@ public class Match extends GridPane{
 	
 	
 	/**
+	 * set reference to the right previous match
 	 * @param rightPreviousMatch
 	 */
 	public void setRightPreviousMatch(Match rightPreviousMatch) {
         this.rightPreviousMatch = rightPreviousMatch;
     }
 	
+	/**
+	 * get left previous match
+	 * @return LeftPreviousMatch
+	 */
 	public Match getLeftPreviousMatch() {
         return leftPreviousMatch;
     }
     
     
     /**
-     * @param rightPreviousMatch
+     * get right previous match
+     * @return RightPreviousMatch
      */
     public Match getRightPreviousMatch() {
         return rightPreviousMatch;
@@ -199,6 +211,10 @@ public class Match extends GridPane{
 	        
 	}
 	
+	/**
+	 * return true if a match is finished, otherwise return false
+	 * @return done
+	 */
 	public boolean getStatus() {
 	    return done;
 	}

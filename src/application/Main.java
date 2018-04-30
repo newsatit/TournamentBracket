@@ -43,7 +43,9 @@ public class Main extends Application {
 		launch(args);
 	}
 
-
+    /**
+     * Method that read input file and return an ArrayList that contain all the challengers
+     */
 	private static ArrayList<Challenger> readFile(String file){
 	    ArrayList<Challenger> nameList = new ArrayList<Challenger>();
         try {
@@ -62,23 +64,4 @@ public class Main extends Application {
         }
         return nameList;
 	}
-	
-//     private ArrayList<Challenger> sortTeam(ArrayList<Challenger> nameList) {
-//         ArrayList<Challenger> sortedList = new ArrayList<Challenger>();
-//         sortedList.add(nameList.get(0));
-//         sortedList.add(nameList.get(1));
-//         int i = 2;
-//         int rounds = (int)((Math.log(nameList.size())/Math.log(2)));
-//         while(i <= rounds) {
-//             int j = sortedList.size();
-//             int sum = (int) (Math.pow(2,i) - 1);
-//             while(j > 0) {
-//                 System.out.println("Round: " + i +" Sum: " + sum +  " j: " + j);
-//                 sortedList.add(j, nameList.get(sum - (sortedList.get(j - 1).getSeed() - 1)));
-//                 j--;
-//             }
-//             i++;
-//         }
-//         return sortedList;
-//     }
 }
