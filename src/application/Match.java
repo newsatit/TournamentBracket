@@ -136,8 +136,12 @@ public class Match extends HBox{
                 leaders.add(getWinner().getChallenger());
                 leaders.add(getLoser().getChallenger());
                 // get the third place challenger by comparing the scores of losers in previous match
-                if (getLeftPreviousMatch() != null && getRightPreviousMatch() != null) leaders.add(getLeftPreviousMatch().getLoser().getScore() > getRightPreviousMatch().getLoser().getScore() ?
-                getLeftPreviousMatch().getLoser().getChallenger() : getRightPreviousMatch().getLoser().getChallenger());
+                if (getLeftPreviousMatch() != null && getRightPreviousMatch() != null) {
+                	ChallengerBlock c1 = getLeftPreviousMatch().getLoser();
+                	ChallengerBlock c2 = getRightPreviousMatch().getLoser();
+                	leaders.add(c1.getScore().compareTo(c2.getScore()) == 0 ? c1.getChallenger().getSeed().compareTo(c2.getChallenger().getSeed()) < 0 ? c1.getChallenger() : c2.getChallenger()
+					: c1.getScore().compareTo(c2.getScore()) > 0 ? c1.getChallenger() : c2.getChallenger());
+				}
                 lb.setLeaders(leaders);
 			}
 	    }
