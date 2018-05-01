@@ -13,6 +13,12 @@ local.properties
 # Java annotation processor (APT)
 .factorypath
 
+# IntelliJ
+.idea/
+out/
+.class
+.iml
+
 bin/
 
 build.fxbuild
