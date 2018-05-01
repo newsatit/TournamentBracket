@@ -31,6 +31,7 @@ public class ChallengerBlock extends HBox{
 	 * @param challenger that will be outputted in this block
 	 */
 	public ChallengerBlock(Challenger challenger) {
+        this.getStyleClass().add("challenger_block");
 		this.challenger = challenger;
 		this.scoreInput = new TextField();
 		this.scoreInput.setPromptText("Enter Score");
@@ -39,9 +40,8 @@ public class ChallengerBlock extends HBox{
 			this.scoreInput.setEditable(false);
 		} else {
 			this.challengerName = new Label(this.challenger.getName());
-			challengerName.setMaxWidth(150);
-			challengerName.setMinWidth(150);
-		}	
+		}
+		challengerName.setPrefWidth(150);
 		scoreInput.setMaxWidth(100);
 		this.getChildren().addAll(this.challengerName, this.scoreInput);
 	}
@@ -54,8 +54,7 @@ public class ChallengerBlock extends HBox{
 		this.challenger = challenger;
 		this.challengerName.setText(this.challenger.getName());
 		this.scoreInput.setEditable(true);
-		challengerName.setMaxWidth(150);
-		challengerName.setMinWidth(150);	
+		challengerName.setPrefWidth(150);
 	}
 	
 	/**

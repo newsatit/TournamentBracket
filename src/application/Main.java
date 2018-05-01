@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -20,12 +23,12 @@ public class Main extends Application {
 			ScrollPane root = new ScrollPane();
 		    BorderPane content = new BorderPane();
 
-		    LeaderBoard lb = new LeaderBoard(3);
-		    content.setTop(lb);
-		    
-		    
-			Bracket bracket = new Bracket(nameList);
-		    content.setCenter(bracket);
+		    Label title = new Label("Team Bracket");
+		    title.getStyleClass().add("title");
+		    content.setTop(title);
+
+		    content.getStyleClass().add("page_content");
+		    content.setCenter(new Group(new Bracket(nameList)));
 
 		    root.setContent(content);
 			Scene scene = new Scene(root);
@@ -39,7 +42,7 @@ public class Main extends Application {
 	}
 	
     public static void main(String[] args) {
-    	nameList = readFile("input/teams8.txt");
+    	nameList = readFile("input/teams16.txt");
 		launch(args);
 	}
 

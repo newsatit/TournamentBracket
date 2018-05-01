@@ -1,23 +1,29 @@
 package application;
 
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 /**
  * Consists of two ChallengerBlocks, and a reference to the next ChallengerBlock the winner of this
  * current match will move to
  * @author
  */
-public class Match extends GridPane{
-	private ChallengerBlock cb1;
-	private ChallengerBlock cb2;
+public class Match extends HBox{
+    private ChallengerBlock cb1;
+    private ChallengerBlock cb2;
 	private Button submitButton;
 	private Match nextMatch;
 	private ChallengerBlock nextBlock;
     private Match leftPreviousMatch;
     private Match rightPreviousMatch;
     private boolean done;
+    private LeaderBoard lb;
 	
 	//create empty future match
 	public Match() {
@@ -33,10 +39,13 @@ public class Match extends GridPane{
 	public Match(Challenger c1, Challenger c2) {
 		nextMatch = null;
 		done = false;
+
+		// Create Submit Button
 		submitButton = new Button("submit");
 		submitButton.setOnAction((event) -> {
 		    handleSubmit();
 		});
+
 		if(c1 == null && c2 == null) {
 			cb1 = new ChallengerBlock();
 			cb2 = new ChallengerBlock();
@@ -45,9 +54,13 @@ public class Match extends GridPane{
 			cb1 = new ChallengerBlock(c1);
 			cb2 = new ChallengerBlock(c2); 			
 		}
-		this.add(cb1, 0, 0);
-		this.add(cb2, 0, 1);
-		this.add(submitButton, 1, 0, 1, 2);
+
+		VBox challengerBlocks = new VBox(cb1, cb2);
+		challengerBlocks.setSpacing(1);
+
+		this.getChildren().addAll(challengerBlocks, submitButton);
+		this.setAlignment(Pos.CENTER);
+
 		GridPane.setValignment(submitButton, VPos.CENTER);		
 	}
 	/**
@@ -59,16 +72,16 @@ public class Match extends GridPane{
        // If the scores for the two teams are not available, or the score was not inputted correctly,
        // then return null
        if (hasTwoChallengers()) { 
-           if (cb1.getScore() == -1 || cb2.getScore() == -1) {
+           if (cb1.getScore() < 0 || cb2.getScore() < 0) {
                return null;
            }
-           if (cb1.getScore()==cb2.getScore()) { 
+           if (cb1.getScore().equals(cb2.getScore())) {
               if ( cb1.getChallenger().getSeed() < cb2.getChallenger().getSeed() )
                    return cb1;
                else
                    return cb2;
            }
-           if (cb1.getScore() > cb2.getScore())
+           if (cb1.getScore().compareTo(cb2.getScore()) > 0)
                return cb1;
            else
                return cb2;
@@ -85,7 +98,7 @@ public class Match extends GridPane{
 	       // If the scores for the two teams are not available, or the score was not inputted correctly,
 	       // then return null
 	       if (hasTwoChallengers()) { 
-	           if (cb1.getScore() == -1 || cb2.getScore() == -1) {
+	           if (cb1.getScore() < 0 || cb2.getScore() < 0) {
 	               return null;
 	           }
 	           if (cb1.getScore()==cb2.getScore()) { 
@@ -109,7 +122,7 @@ public class Match extends GridPane{
 	 */
 	public void handleSubmit() {
 		//TODO: implement
-	    if(getWinner() != null) {
+	    if(getWinner() != null && getLoser() != null) {
 	        cb1.setDisable(true);
             cb2.setDisable(true);
             submitButton.setDisable(true);
@@ -117,7 +130,16 @@ public class Match extends GridPane{
             if(nextMatch != null) {
                 this.nextBlock.setChallenger(getWinner().getChallenger());
                 this.nextMatch.submitButton.setDisable(false);
-            }
+            } else if (lb != null){
+                // TODO : Handle Corner cases
+                ArrayList<Challenger> leaders = new ArrayList<>();
+                leaders.add(getWinner().getChallenger());
+                leaders.add(getLoser().getChallenger());
+                // get the third place challenger by comparing the scores of losers in previous match
+                if (getLeftPreviousMatch() != null && getRightPreviousMatch() != null) leaders.add(getLeftPreviousMatch().getLoser().getScore() > getRightPreviousMatch().getLoser().getScore() ?
+                getLeftPreviousMatch().getLoser().getChallenger() : getRightPreviousMatch().getLoser().getChallenger());
+                lb.setLeaders(leaders);
+			}
 	    }
 	}
 	
@@ -210,6 +232,8 @@ public class Match extends GridPane{
 	    }
 	        
 	}
+
+	public void setOutputLeaderBoard(LeaderBoard lb) { this.lb = lb; }
 	
 	/**
 	 * return true if a match is finished, otherwise return false

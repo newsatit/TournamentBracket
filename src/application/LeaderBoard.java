@@ -1,8 +1,10 @@
 package application;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -18,12 +20,13 @@ import java.util.ArrayList;
 public class LeaderBoard extends VBox{
     ArrayList<LeaderBlock> leaders;
 
-    public LeaderBoard(int num) {
+    public LeaderBoard(int size) {
+        this.getStyleClass().add("leaderboard");
         leaders = new ArrayList<>();
 
         this.setAlignment(Pos.CENTER);
 
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < size; i++) {
             leaders.add(new LeaderBlock(i + 1));
         }
 
@@ -34,9 +37,16 @@ public class LeaderBoard extends VBox{
         VBox blockGroup = new VBox();
         blockGroup.getChildren().addAll(leaders);
         blockGroup.setSpacing(2);
+        blockGroup.setId("Leaders");
         this.getChildren().add(new Group(blockGroup));
     }
 
+    public void setLeaders(ArrayList<Challenger> leaders) {
+        ObservableList<Node> blockGroup = ((VBox) this.lookup("#Leaders")).getChildren();
+        for (int i = 0; i < leaders.size() && i < blockGroup.size(); i++) {
+            if (leaders.get(i) != null) ((LeaderBlock) blockGroup.get(i)).setName(leaders.get(i).getName());
+        }
+    }
 
     private class LeaderBlock extends HBox{
         private Label rank;
@@ -50,7 +60,7 @@ public class LeaderBoard extends VBox{
 
             LeaderName = new Pane();
             LeaderName.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-            LeaderName.setPrefSize(150,1);
+            LeaderName.setPrefSize(180,1);
             LeaderName.getChildren().add(new Label());
 
             this.getChildren().addAll(this.rank, this.LeaderName);

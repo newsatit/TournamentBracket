@@ -3,25 +3,41 @@ package application;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javafx.scene.layout.GridPane;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 
 public class Bracket extends GridPane {
 	private ArrayList<Match> matches;
 	private Match finalMatch;
 	private ArrayList<Challenger> challengers;
+	private LeaderBoard lb;
 	private int index = 0;
 	
 	public Bracket(ArrayList<Challenger> challengers) {
+		this.getStyleClass().add("bracket");
 	    this.challengers = challengers;
 		if(challengers.size() == 0) {//No winner
-			
+			this.add(lb = new LeaderBoard(3), 0, 0);
 		} else if(challengers.size() == 1) {//instant winner
-			
-		} else {//2^n challengers 
-		    double currentRow = (challengers.size()/2) - 1;
-		    double currentCol = (int)((Math.log(currentRow)/Math.log(2)) + 1);
+			this.add(lb = new LeaderBoard(3), 0, 0);
+			lb.setLeaders(challengers);
+		} else{//2^n challengers
+			int currentRow;
+			int currentCol;
+			if (challengers.size() == 2) {
+				currentRow = 1;
+				currentCol = 0;
+			} else {
+				currentRow = (challengers.size() / 2) - 1;
+				currentCol = (int) ((Math.log(currentRow) / Math.log(2)) + 1);
+			}
+
+			this.add(lb = new LeaderBoard(3), currentCol, 0);
 		    matches = new ArrayList<Match>();
 		    finalMatch = createMatches(null, null, currentRow, currentCol, currentRow, challengers);
+			finalMatch.setOutputLeaderBoard(lb);
 		}
 	}
 	
@@ -34,14 +50,14 @@ public class Bracket extends GridPane {
             Match current = new Match(challengers.get(0),challengers.get(1));
             current.setNextBlock(nextBlock);
             current.setNextMatch(nextMatch);
-            this.add(current, (int)col, (int)row);
+            this.add(new Group(current), (int)col, (int)row);
             matches.add(current);
             return current;
         }else {
 	        Match current = new Match();
 	        current.setNextBlock(nextBlock);
 	        current.setNextMatch(nextMatch);
-	        this.add(current, (int)col, (int)row);
+	        this.add(new Group(current), (int)col, (int)row);
 	        // split the ArrayList of team to pass to createMatches
 	        ArrayList<Challenger> top = new ArrayList<Challenger>();
 	        ArrayList<Challenger> bottom = new ArrayList<Challenger>();
