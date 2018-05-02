@@ -42,7 +42,7 @@ public class Main extends Application {
 	}
 	
     public static void main(String[] args) {
-    	nameList = readFile("../teamList.txt");
+    	nameList = readFile("teamList.txt");
 		launch(args);
 	}
 
