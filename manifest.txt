@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Created-By: A-Team 33
-Main-Class: application.Main
