@@ -11,19 +11,34 @@
 //////////////////////////// 80 columns wide //////////////////////////////////
 package application;
 
+/**
+ * Store information about a team including the name in String and seed that is correspond with it in Integer .
+ *
+ */
 public class Challenger {
-	private String name;
-	private Integer seed;
+	private String name;//name of the team
+	private Integer seed;//seed of a team; 1 means being the potentially strongest team
 	
+	/**
+	 * Constructor that take assign a name and a seed to the Challenger object
+	 * @param name String that contains the name of the team
+	 * @param seed Integer that contains the seed of the team with 1 meaning being the 1st seed
+	 */
 	public Challenger(String name, Integer seed) {
 		this.name = name;
 		this.seed = seed;
 	}
 	
+	/**
+	 * @return name of the team in String
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * @return name of the team in String
+	 */
 	public Integer getSeed() {
 		return seed;
 	}
