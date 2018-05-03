@@ -19,7 +19,6 @@ import javafx.scene.layout.HBox;
 /**
  * Stores and outputs the name of the Challenger and the score. Helps keep track of the challenger's
  * score for a specific match
- * @author
  *
  */
 public class ChallengerBlock extends HBox{
