@@ -24,6 +24,11 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 
+/**
+ * Main class
+ *initialize the program including the data and GUI
+ *handle file input
+ */
 public class Main extends Application {
 	
 	private static ArrayList<Challenger> nameList;//contains all the teams in Challenger ordered from the strongest to the weakest

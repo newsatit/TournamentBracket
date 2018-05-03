@@ -1,9 +1,0 @@
-01Boston Celtics
-02Los Angeles Lakers
-03Chicago Bulls
-04Golden State Warriors
-05San Antonio Spurs
-06Philadelphia 76ers
-07Detroit Pistons
-08Miami Heat
-
