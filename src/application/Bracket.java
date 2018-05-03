@@ -19,13 +19,25 @@ import javafx.scene.Group;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
+/**
+ * A GridPane that contains the bracket of the tournament.
+ * It contains the Match objects which contain the matching of the team in the tournament.
+ * @author A-Team 33
+ *
+ */
 public class Bracket extends GridPane {
-	private ArrayList<Match> matches;
-	private Match finalMatch;
-	private ArrayList<Challenger> challengers;
-	private LeaderBoard lb;
-	private int index = 0;
 	
+	// the final match of the tournament
+	private Match finalMatch;
+	// challenger teams of the tournament
+	private ArrayList<Challenger> challengers;
+	// the leaderboard to display 1,2,3 places
+	private LeaderBoard lb;
+	
+	/**
+	 * Constructor of the Bracket 
+	 * @param challengers challenger teams in the tournament
+	 */
 	public Bracket(ArrayList<Challenger> challengers) {
 		this.getStyleClass().add("bracket");
 	    this.challengers = challengers;
@@ -46,23 +58,29 @@ public class Bracket extends GridPane {
 			}
 
 			this.add(lb = new LeaderBoard(3), currentCol, 0);
-		    matches = new ArrayList<Match>();
 		    finalMatch = createMatches(null, null, currentRow, currentCol, currentRow, challengers);
 			finalMatch.setOutputLeaderBoard(lb);
 		}
 	}
 	
+
 	/**
-	 * recursive method that create all the matches and store the reference to all matches in the first round into 
-     * the arrayList matches
-     */
+	 * Recursive method that create all the matches and place them in appropriate coordinates by 
+	 * splitting the possible candidate teams in the recursive call
+	 * @param nextMatch the next match if one of the team in current match will advance to
+	 * @param nextBlock the team block if one of the team in current match will advance to
+	 * @param space
+	 * @param col the x position in the GridePane
+	 * @param row the y position in the GridPane
+	 * @param challengers the challenger teams that can possibly advance to this match
+	 * @return the match with reference to matches in the previous rounds
+	 */
 	public Match createMatches(Match nextMatch, ChallengerBlock nextBlock,double space, double col, double row, ArrayList<Challenger> challengers) {
 	    if(col == 0){
             Match current = new Match(challengers.get(0),challengers.get(1));
             current.setNextBlock(nextBlock);
             current.setNextMatch(nextMatch);
             this.add(new Group(current), (int)col, (int)row);
-            matches.add(current);
             return current;
         }else {
 	        Match current = new Match();
@@ -93,22 +111,5 @@ public class Bracket extends GridPane {
 	    }
 	}
 	
-	/**
-	 * Method that return an ArrayList that contains the winners in the bracket
-	 * [0] = first place [1]=second place [2] = third place
-	 */
-	public ArrayList<ChallengerBlock> getChamp() {
-	    if(finalMatch.getStatus()) {
-	        ArrayList<ChallengerBlock> champs = new ArrayList<ChallengerBlock>();
-	        champs.add(finalMatch.getWinner());
-	        champs.add(finalMatch.getLoser());
-	        if(finalMatch.getLeftPreviousMatch().getLoser().getScore() > finalMatch.getRightPreviousMatch().getLoser().getScore()) {
-	            champs.add(finalMatch.getLeftPreviousMatch().getLoser());
-	        }else {
-	            champs.add(finalMatch.getRightPreviousMatch().getLoser());
-	        }
-	        return champs;
-	    }
-	    else return null;
-	}
+
 }
