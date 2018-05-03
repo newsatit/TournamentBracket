@@ -164,7 +164,7 @@ public class Match extends HBox{
 	
 	/**
 	 * set the reference to the next match
-	 * @param nextMatch
+	 * @param nextMatch : next match where the winner of this match will be send to
 	 */
 	public void setNextMatch(Match nextMatch) {
 		this.nextMatch = nextMatch;
@@ -173,7 +173,7 @@ public class Match extends HBox{
 	
 	/**
 	 * set reference to the left previous match
-	 * @param leftPreviousMatch
+	 * @param leftPreviousMatch : previous match where the challenger in the upper block of the match come from 
 	 */
 	public void setLeftPreviousMatch(Match leftPreviousMatch) {
         this.leftPreviousMatch = leftPreviousMatch;
@@ -182,7 +182,7 @@ public class Match extends HBox{
 	
 	/**
 	 * set reference to the right previous match
-	 * @param rightPreviousMatch
+	 * @param rightPreviousMatch  : previous match where the challenger in the lower block of the match come from 
 	 */
 	public void setRightPreviousMatch(Match rightPreviousMatch) {
         this.rightPreviousMatch = rightPreviousMatch;
@@ -190,7 +190,7 @@ public class Match extends HBox{
 	
 	/**
 	 * get left previous match
-	 * @return LeftPreviousMatch
+	 * @return LeftPreviousMatch : previous match where the challenger in the upper block of the match come from 
 	 */
 	public Match getLeftPreviousMatch() {
         return leftPreviousMatch;
@@ -199,7 +199,7 @@ public class Match extends HBox{
     
     /**
      * get right previous match
-     * @return RightPreviousMatch
+     * @return RightPreviousMatch : previous match where the challenger in the lower block of the match come from 
      */
     public Match getRightPreviousMatch() {
         return rightPreviousMatch;
@@ -232,8 +232,7 @@ public class Match extends HBox{
 	}
 	
 	/**
-	 * 
-	 * @param i, which will be used to pick a ChallengerBlock
+	 * @param i, indicating the ChallengerBlock; 1 being the upper, 2 being the lower
 	 * @return one of the two ChallengerBlock objects stored in this current Match. Returns null if
 	 * the index exceeds 2
 	 */
