@@ -13,6 +13,7 @@ package application;
 
 /**
  * Store information about a team including the name in String and seed that is correspond with it in Integer .
+ * @author A-Team 33
  */
 public class Challenger {
 	private String name;//name of the team
