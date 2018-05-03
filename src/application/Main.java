@@ -71,6 +71,8 @@ public class Main extends Application {
 
     /**
      * Method that read input file and return an ArrayList that contain all the challengers
+     * @param file String that contains the path to the text field containing all the teams
+     * @return ArrayList<Challenger> that contains all the teams in the same order as it is in the text file
      */
 	private static ArrayList<Challenger> readFile(String file) throws FileNotFoundException {
 	    ArrayList<Challenger> nameList = new ArrayList<Challenger>();
