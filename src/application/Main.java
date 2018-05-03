@@ -61,7 +61,11 @@ public class Main extends Application {
 	 * @param args Command Line argument
 	 */
     public static void main(String[] args) {
-    	nameList = readFile("teamList.txt");
+    	try {
+    		nameList = readFile(args[0]);
+    	} catch (FileNotFoundException fnf) {
+    		fnf.printStackTrace();
+    	}
 		launch(args);
 	}
 
@@ -70,22 +74,18 @@ public class Main extends Application {
      * @param file String that contains the path to the text field containing all the teams
      * @return ArrayList<Challenger> that contains all the teams in the same order as it is in the text file
      */
-	private static ArrayList<Challenger> readFile(String file){
+	private static ArrayList<Challenger> readFile(String file) throws FileNotFoundException {
 	    ArrayList<Challenger> nameList = new ArrayList<Challenger>();
-        try {
-            Scanner sc = new Scanner(new File(file));
-            int i = 1;
-            while (sc.hasNextLine()) {
-                String duh = sc.nextLine().trim();
-                if(!duh.equals("")) {
-                	nameList.add(new Challenger(duh, i));
-                	i++;               	
-                }
+        Scanner sc = new Scanner(new File(file));
+        int i = 1;
+        while (sc.hasNextLine()) {
+            String duh = sc.nextLine().trim();
+            if(!duh.equals("")) {
+            	nameList.add(new Challenger(duh, i));
+            	i++;               	
             }
-            sc.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
+        sc.close();
         return nameList;
 	}
 }

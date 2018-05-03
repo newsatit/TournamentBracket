@@ -27,7 +27,9 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
 
-
+/**
+ * LeaderBoard - Displays the ranking after the final match
+ */
 public class LeaderBoard extends VBox{
     ArrayList<LeaderBlock> leaders;
 
@@ -52,6 +54,13 @@ public class LeaderBoard extends VBox{
         this.getChildren().add(new Group(blockGroup));
     }
 
+    /**
+     * Set the leaders from an arrayList of Challengers
+     *
+     * The nth challenger in the arrayList corresponds to the nth entry of the LeaderBoard
+     * 
+     * @param leaders - an ArrayList of Challenger containing the leaders
+     */
     public void setLeaders(ArrayList<Challenger> leaders) {
         ObservableList<Node> blockGroup = ((VBox) this.lookup("#Leaders")).getChildren();
         for (int i = 0; i < leaders.size() && i < blockGroup.size(); i++) {
@@ -59,6 +68,9 @@ public class LeaderBoard extends VBox{
         }
     }
 
+    /**
+     * LeaderBlock - Displays the ranking and name of one team on the LeaderBoard
+     */
     private class LeaderBlock extends HBox{
         private Label rank;
         private Pane LeaderName;
@@ -78,6 +90,10 @@ public class LeaderBoard extends VBox{
             this.setLayoutY(10);
         }
 
+        /**
+         * Set Team name of this LeaderBlock
+         * @param name - name of the leader
+         */
         public void setName(String name) {
             ((Label) LeaderName.getChildren().get(0)).setText(name);
         }
