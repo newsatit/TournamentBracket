@@ -29,10 +29,15 @@ import java.util.ArrayList;
 
 /**
  * LeaderBoard - Displays the ranking after the final match
+ * @author A-Team 33
  */
 public class LeaderBoard extends VBox{
-    ArrayList<LeaderBlock> leaders;
+    ArrayList<LeaderBlock> leaders; // list of 1st, 2nd, 3rd place of the challengers
 
+    /**
+     * Constructor of the leader board
+     * @param size size of the leader board
+     */
     public LeaderBoard(int size) {
         this.getStyleClass().add("leaderboard");
         leaders = new ArrayList<>();
@@ -72,9 +77,13 @@ public class LeaderBoard extends VBox{
      * LeaderBlock - Displays the ranking and name of one team on the LeaderBoard
      */
     private class LeaderBlock extends HBox{
-        private Label rank;
-        private Pane LeaderName;
+        private Label rank; // rank of the Challenger
+        private Pane LeaderName; // name of the Challenger
 
+        /**
+         * Constructor of the LeaderBlock
+         * @param rank rank of the Challenger
+         */
         public LeaderBlock(Integer rank){
             this.setAlignment(Pos.CENTER_LEFT);
 
