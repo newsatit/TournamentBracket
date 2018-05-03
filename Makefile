@@ -26,11 +26,11 @@ teams32:
 # CREATE executable.jar files
 # make jar     - IF .java FILES ARE NOT IN src folder
 jar:
-	jar -cmf src/manifest.txt src/executable.jar src/application
+	jar -cmf src/manifest.txt src/executable.jar -C src application
     
 # make jar_src - IF .java FILES ARE IN src folder
 jar_src:   
-	jar -cmf src/manifest.txt executable.jar src/application
+	jar -cmf src/manifest.txt executable.jar -C src application
 
 clean:
 	\rm src/application/*.class
