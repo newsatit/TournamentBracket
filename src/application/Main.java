@@ -53,29 +53,29 @@ public class Main extends Application {
 	}
 	
     public static void main(String[] args) {
-    	nameList = readFile("teamList.txt");
+    	try {
+    		nameList = readFile(args[0]);
+    	} catch (FileNotFoundException fnf) {
+    		fnf.printStackTrace();
+    	}
 		launch(args);
 	}
 
     /**
      * Method that read input file and return an ArrayList that contain all the challengers
      */
-	private static ArrayList<Challenger> readFile(String file){
+	private static ArrayList<Challenger> readFile(String file) throws FileNotFoundException {
 	    ArrayList<Challenger> nameList = new ArrayList<Challenger>();
-        try {
-            Scanner sc = new Scanner(new File(file));
-            int i = 1;
-            while (sc.hasNextLine()) {
-                String duh = sc.nextLine().trim();
-                if(!duh.equals("")) {
-                	nameList.add(new Challenger(duh, i));
-                	i++;               	
-                }
+        Scanner sc = new Scanner(new File(file));
+        int i = 1;
+        while (sc.hasNextLine()) {
+            String duh = sc.nextLine().trim();
+            if(!duh.equals("")) {
+            	nameList.add(new Challenger(duh, i));
+            	i++;               	
             }
-            sc.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
+        sc.close();
         return nameList;
 	}
 }
