@@ -26,9 +26,12 @@ import javafx.scene.control.ScrollPane;
 
 public class Main extends Application {
 	
-	private static ArrayList<Challenger> nameList;
+	private static ArrayList<Challenger> nameList;//contains all the teams in Challenger ordered from the strongest to the weakest
 	
 	@Override
+	/**
+	 * Create the fundamental GUI structure of the program
+	 */
 	public void start(Stage primaryStage) {
 		try {
 			ScrollPane root = new ScrollPane();
@@ -52,6 +55,11 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * main method
+	 * get the list of team by calling readFile method with the path to the text file containing all the teams as the parameter
+	 * @param args Command Line argument
+	 */
     public static void main(String[] args) {
     	nameList = readFile("teamList.txt");
 		launch(args);

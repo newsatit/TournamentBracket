@@ -36,7 +36,9 @@ public class Match extends HBox{
     private boolean done;
     private LeaderBoard lb;
 	
-	//create empty future match
+	/**
+	 * call an empty match that contains only submit button in a GridPane to create match that matchup have not yet be decided
+	 */
 	public Match() {
 		this(null, null);
 	}
@@ -74,6 +76,7 @@ public class Match extends HBox{
 
 		GridPane.setValignment(submitButton, VPos.CENTER);		
 	}
+	
 	/**
 	 *  @return Returns the ChallengerBlock with the higher score in the current match. If the two challengers
 	 *  have the same score, the Challenger with the higher seed (rank) will be chosen as the winner.
@@ -204,7 +207,7 @@ public class Match extends HBox{
 	
 	/**
 	 * Sets the object of the nextBlock using the ChallengerBlock parameter
-	 * @param nextBlock the ChallengerBlock that the winner will move to in the next round
+	 * @param nextBlock, the ChallengerBlock that the winner will move to in the next round
 	 */
 	public void setNextBlock(ChallengerBlock nextBlock) {
 		this.nextBlock = nextBlock;
@@ -212,8 +215,6 @@ public class Match extends HBox{
 	
 	
 	/**
-	 * returns true if two challengers are initialized in their respective ChallengerBlocks.
-	 * False otherwise
 	 * @return true if two challengers are initialized in their respective ChallengerBlocks.
 	 * False otherwise
 	 */
@@ -247,12 +248,17 @@ public class Match extends HBox{
 	    }
 	        
 	}
-
-	public void setOutputLeaderBoard(LeaderBoard lb) { this.lb = lb; }
 	
 	/**
-	 * return true if a match is finished, otherwise return false
-	 * @return done
+	 * set parameter lb to be LeaderBoard lb in the match
+	 * @param lb a LeaderBoard class object
+	 */
+	public void setOutputLeaderBoard(LeaderBoard lb) { 
+	    this.lb = lb; 
+	}
+	
+	/**
+	 * @return true if a match is finished, otherwise return false
 	 */
 	public boolean getStatus() {
 	    return done;
