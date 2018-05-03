@@ -12,18 +12,12 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 
 /**
  * A GridPane that contains the bracket of the tournament.
  * It contains the Match objects which contain the matching of the team in the tournament.
- * @author A-Team 33
- *
  */
 public class Bracket extends GridPane {
 	
@@ -69,7 +63,7 @@ public class Bracket extends GridPane {
 	 * splitting the possible candidate teams in the recursive call
 	 * @param nextMatch the next match if one of the team in current match will advance to
 	 * @param nextBlock the team block if one of the team in current match will advance to
-	 * @param space
+	 * @param space indicating the vertical distance(number of row) between each match in a column
 	 * @param col the x position in the GridePane
 	 * @param row the y position in the GridPane
 	 * @param challengers the challenger teams that can possibly advance to this match
